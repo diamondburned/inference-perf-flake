@@ -81,7 +81,7 @@
                 text = ''
                   cd ${./.}
                   exec python3 -m gunicorn \
-                    -w ''${WORKERS:-4} \
+                    -w "''${WORKERS:-4}" \
                     -k uvicorn.workers.UvicornWorker \
                     echo_server:app
                 '';
@@ -89,6 +89,7 @@
                   (python.withPackages (
                     pp: with pp; [
                       fastapi
+                      uvicorn
                       gunicorn
                     ]
                   ))
